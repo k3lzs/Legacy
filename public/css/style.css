@@ -1,0 +1,443 @@
+:root {
+    --bg: #0d0d0d;
+    --card: #1a1a1a;
+    --border: #2d2d2d;
+    --accent: #ff8c00; /* Legacy Orange */
+    --text: #e0e0e0;
+    --text-dim: #a0a0a0;
+}
+
+body.dark-theme {
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Header Logic */
+.header-placement {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 70px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    box-sizing: border-box;
+}
+
+.header-middle { width: 40%; }
+.search-form input {
+    width: 100%;
+    padding: 10px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: white;
+}
+
+/* Layout Grid */
+.screen-wrapper {
+    display: flex;
+    margin-top: 70px;
+    padding: 20px;
+    gap: 20px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.column-left { width: 20%; position: sticky; top: 90px; height: fit-content; }
+.column-center { width: 55%; }
+.column-right { width: 25%; }
+
+/* Cards & Components */
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-pic-large {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    margin-bottom: 1rem;
+}
+
+.stats-row {
+    display: flex;
+    gap: 15px;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+}
+
+/* Post Styling */
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+}
+
+.avatar-sm {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.post-meta { display: flex; flex-direction: column; }
+.post-meta small { color: var(--text-dim); }
+
+.post-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-top: 1rem;
+    display: flex;
+    gap: 20px;
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--accent);
+    color: black;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-social {
+    background: transparent;
+    color: var(--text-dim);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-social:hover { color: var(--accent); }
+
+.btn-outline {
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    resize: none;
+    outline: none;
+    min-height: 80px;
+}
+
+/* Search Container Logic */
+.header-middle {
+    position: relative; /* Crucial for positioning the results card */
+    width: 40%;
+}
+
+.search-container {
+    width: 100%;
+    position: relative;
+}
+
+/* The Floating Results Card */
+.search-results-card {
+    position: absolute;
+    top: 55px; /* Appears right under the search bar */
+    left: 0;
+    right: 0;
+    z-index: 999;
+    padding: 0; /* Remove default card padding for the list */
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    border: 1px solid var(--accent); /* Highlights the active search */
+}
+
+.results-header {
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #222;
+}
+
+.close-results {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.close-results:hover {
+    color: var(--accent);
+}
+
+/* Individual Result Items */
+.result-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: var(--text);
+    transition: background 0.2s;
+    border-bottom: 1px solid var(--border);
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+.result-item:hover {
+    background: #252525;
+}
+
+.avatar-xs {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.result-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.result-info strong {
+    font-size: 0.9rem;
+    color: var(--accent);
+}
+
+.result-info small {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+
+/* Ensure post creation doesn't overlap if visible */
+.screen-wrapper {
+    z-index: 1;
+}
+
+/* Profile Specific Styles */
+.full-name {
+    color: var(--text-dim);
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-item strong {
+    font-size: 1.2rem;
+    color: var(--text);
+}
+
+.stat-item small {
+    color: var(--text-dim);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+}
+
+.detailed-info {
+    margin-top: 25px;
+    text-align: left;
+    width: 100%;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+}
+
+.info-group {
+    margin-bottom: 15px;
+}
+
+.info-group label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.info-group p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.section-title h3 {
+    margin-bottom: 20px;
+    color: var(--text);
+    border-left: 4px solid var(--accent);
+    padding-left: 15px;
+}
+
+.alert {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background: #1e3a2f; /* Dark green for success */
+    color: #a7f3d0;
+    border: 1px solid #065f46;
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--text-dim);
+    font-style: italic;
+}
+
+/* --- Comment Section Styling --- */
+
+.comment-section {
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.02); /* Very subtle highlight */
+    border-radius: 0 0 12px 12px;
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 10px 0;
+}
+
+/* Individual Comment Layout */
+.comment-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding: 0 5px;
+}
+
+.comment-bubble {
+    background: #252525; /* Slightly lighter than the card */
+    padding: 8px 12px;
+    border-radius: 14px;
+    flex: 1;
+    position: relative;
+}
+
+.comment-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-text strong {
+    font-size: 0.85rem;
+    color: var(--accent); /* Legacy Orange for names */
+    margin-bottom: 2px;
+}
+
+.comment-text span {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--text);
+}
+
+.comment-date {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-top: 4px;
+}
+
+/* Comment Input Form */
+.comment-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+}
+
+.comment-input-group {
+    display: flex;
+    flex: 1;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 15px;
+    align-items: center;
+    transition: border-color 0.2s;
+}
+
+.comment-input-group:focus-within {
+    border-color: var(--accent);
+}
+
+.comment-input-group input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 8px 0;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.btn-send {
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.btn-send:hover {
+    transform: scale(1.1);
+}
+
+/* Custom Scrollbar for comments if they get long */
+.comments-list {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.comments-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.comments-list::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 10px;
+}
