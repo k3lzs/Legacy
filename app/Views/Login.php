@@ -6,11 +6,10 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/style.css') ?>">
     <title>Login</title>
 </head>
-<body class="login-body">
-    <div class="login-card">
+<body class="login-body dark-theme">
+    <div class="login-card card">
         <h2>Social Media</h2>
 
-        <!-- Display Messages -->
         <?php if (session()->getFlashdata('error')) : ?>
             <div class="alert alert-error"><?= session()->getFlashdata('error') ?></div>
         <?php endif; ?>
@@ -32,10 +31,10 @@
                 <input type="password" id="password" name="password" required>
             </div>
 
-            <button type="submit">Login</button>
+            <button type="submit" class="btn-primary">Login</button>
         </form>
 
-        <hr>
+        <hr class="divider">
         <p class="register-link">Don't have an account? <a href="<?= site_url('registration') ?>">Register here</a></p>
     </div>
 </body>
